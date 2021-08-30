@@ -28,6 +28,7 @@ class AppCoordinator: Coordinator {
     
     func switchTo(_ state: State) {
         let coordinator = getCoordinator(state)
+        addChildCoordinator(coordinator)
         coordinator.start()
     }
     
@@ -35,11 +36,9 @@ class AppCoordinator: Coordinator {
         if state == .onboarding {
             let coordinator = OnboardingCoordinator(window)
             coordinator.delegate = self
-            addChildCoordinator(coordinator)
             return coordinator
         } else {
             let coordinator = HomeCoordinator(window)
-            addChildCoordinator(coordinator)
             return coordinator
         }
     }
